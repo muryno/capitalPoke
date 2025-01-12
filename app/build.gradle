@@ -45,7 +45,22 @@ android {
 
     packagingOptions {
         resources {
-            excludes += ['META-INF/LICENSE.md', 'META-INF/LICENSE-notice.md']
+            excludes += [
+                'META-INF/LICENSE.md', 
+                'META-INF/LICENSE-notice.md',
+                'META-INF/AL2.0',
+                'META-INF/LGPL2.1'
+            ]
+            pickFirsts += ['META-INF/INDEX.LIST']
+        }
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
         }
     }
 }
@@ -84,6 +99,7 @@ dependencies {
     
     // Android Testing
     androidTestImplementation "io.mockk:mockk-android:1.13.8"
+    androidTestImplementation "io.mockk:mockk-agent:1.13.8"
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3"
     
     // Compose Testing
